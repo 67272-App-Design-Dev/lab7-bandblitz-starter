@@ -27,10 +27,10 @@ class BandsController < ApplicationController
     @band = Band.new(band_params)
 
     if @band.save
-      redirect_to(@band, :notice => 'Band was successfuly created.')
+      redirect_to @band, notice: 'Band was successfuly created.'
     else
       params[:band][:genre_ids] = nil
-      render :action => 'new'
+      render action: 'new'
     end
   end
 
@@ -38,9 +38,9 @@ class BandsController < ApplicationController
   # PATCH/PUT /bands/1.json
   def update
     if @band.update(band_params)
-      redirect_to(@band, :notice => 'Band was successfully updated.')
+      redirect_to @band, notice: 'Band was successfully updated.'
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 
@@ -48,7 +48,7 @@ class BandsController < ApplicationController
   # DELETE /bands/1.json
   def destroy
     @band.destroy
-    redirect_to(bands_path)
+    redirect_to bands_path, status: :see_other
   end
 
   private
@@ -59,6 +59,6 @@ class BandsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def band_params
-      params.require(:band).permit(:name, :description, :playing_next, :when_playing_next, :photo, :song, :genre_ids => [])    
+      params.expect(band: [:name, :description, :playing_next, :when_playing_next, :photo, :song, { genre_ids: [] }])
     end
 end

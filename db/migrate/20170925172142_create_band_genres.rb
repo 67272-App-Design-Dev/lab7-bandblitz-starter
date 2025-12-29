@@ -1,4 +1,4 @@
-class CreateBandGenres < ActiveRecord::Migration[5.1]
+class CreateBandGenres < ActiveRecord::Migration[8.1]
   def change
     create_table :band_genres do |t|
       t.integer :band_id

@@ -26,9 +26,9 @@ class GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      redirect_to(@genre, :notice => 'Genre was successfully created.')
+      redirect_to @genre, notice: 'Genre was successfully created.'
     else
-      render :action => "new"
+      render action: "new"
     end
   end
 
@@ -36,9 +36,9 @@ class GenresController < ApplicationController
   # PATCH/PUT /genres/1.json
   def update
     if @genre.update(genre_params)
-      redirect_to(@genre, :notice => 'Genre was successfully updated.')
+      redirect_to @genre, notice: 'Genre was successfully updated.'
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 
@@ -46,7 +46,7 @@ class GenresController < ApplicationController
   # DELETE /genres/1.json
   def destroy
     @genre.destroy
-    redirect_to(genres_url)
+    redirect_to genres_url, status: :see_other
   end
 
   private
@@ -57,6 +57,6 @@ class GenresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def genre_params
-      params.require(:genre).permit(:name)
+      params.expect(genre: [:name])
     end
 end

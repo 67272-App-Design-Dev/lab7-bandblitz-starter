@@ -10,29 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2017_09_25_172344) do
+ActiveRecord::Schema[8.1].define(version: 2017_09_25_172344) do
   create_table "band_genres", force: :cascade do |t|
     t.integer "band_id"
-    t.integer "genre_id"
     t.datetime "created_at", precision: nil, null: false
+    t.integer "genre_id"
     t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "bands", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.string "playing_next"
-    t.datetime "when_playing_next", precision: nil
-    t.string "photo"
-    t.string "song"
     t.datetime "created_at", precision: nil, null: false
+    t.text "description"
+    t.string "name"
+    t.string "photo"
+    t.string "playing_next"
+    t.string "song"
     t.datetime "updated_at", precision: nil, null: false
+    t.datetime "when_playing_next", precision: nil
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", precision: nil, null: false
+    t.string "name"
     t.datetime "updated_at", precision: nil, null: false
   end
-
 end
