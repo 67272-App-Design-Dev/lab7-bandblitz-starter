@@ -2,9 +2,9 @@ class Band < ApplicationRecord
 	attr_accessor :genre_ids
   
   # relationships
-  has_many :band_genres
+  has_many :band_genres, dependent: :destroy
   has_many :genres, :through => :band_genres
-  has_many :users
+  has_many :users, dependent: :nullify
   # has_many :comments, :dependent => :destroy
 
   # uploaders
